@@ -1,4 +1,4 @@
-package com.took.firstgit.fragment;
+package com.took.firstgit.ui.fragment;
 
 import android.os.Bundle;
 import android.util.Log;

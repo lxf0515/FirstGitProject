@@ -15,10 +15,9 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
-
-import com.took.firstgit.fragment.ContactsFragment;
-import com.took.firstgit.fragment.FoundFragment;
-import com.took.firstgit.fragment.MeFragment;
+import com.took.firstgit.ui.fragment.ContactsFragment;
+import com.took.firstgit.ui.fragment.FoundFragment;
+import com.took.firstgit.ui.fragment.MeFragment;
 import com.took.firstgit.utils.BottomNavigationViewHelper;
 
 import java.util.ArrayList;

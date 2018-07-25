@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tl="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <com.flyco.tablayout.SegmentTabLayout
+        android:id="@+id/tl_1"
+        android:layout_width="240dp"
+        android:layout_height="32dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        tl:tl_bar_color="#ffffff"
+        tl:tl_indicator_color="#2C97DE"
+        tl:tl_indicator_corner_radius="8dp"
+        tl:tl_tab_padding="20dp"/>
+
+    <com.flyco.tablayout.SegmentTabLayout
+        android:id="@+id/tl_4"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:layout_gravity="center_horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        tl:tl_bar_color="@color/white"
+        tl:tl_indicator_color="@color/colorPrimary"
+        tl:tl_indicator_margin_bottom="2dp"
+        tl:tl_indicator_margin_left="2dp"
+        tl:tl_indicator_margin_right="2dp"
+        tl:tl_indicator_margin_top="2dp"
+        tl:tl_tab_width="80dp"
+        android:layout_marginTop="30dp"
+        />
+
+    <com.flyco.tablayout.SlidingTabLayout
+        android:id="@+id/tl_3"
+        android:layout_width="match_parent"
+        android:layout_marginTop="30dp"
+        android:layout_height="48dp"
+        android:background="#3F9FE0"
+        tl:tl_indicator_color="@color/colorAccent"
+        tl:tl_textSelectColor="@color/colorAccent"
+        tl:tl_textUnselectColor="@color/white"
+        tl:tl_textAllCaps="true"
+        tl:tl_textsize="14sp"/>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp"
+        android:layout_width="match_parent"
+        android:layout_height="84dp"
+        android:layout_marginTop="40dp"
+        />
+</LinearLayout>
