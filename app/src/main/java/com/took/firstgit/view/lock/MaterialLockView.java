@@ -1073,7 +1073,6 @@ public class MaterialLockView extends View {
                 mInProgressX = centerX + dx;
                 mInProgressY = centerY + dy;
             }
-            // TODO: Infinite loop here...
             invalidate();
         }
 
@@ -1093,7 +1092,6 @@ public class MaterialLockView extends View {
             }
         }
 
-        // TODO: the path should be created and cached every time we hit-detect
         // a cell
         // only the last segment of the path should be computed here
         // draw the path of the pattern (unless we are in stealth mode)
