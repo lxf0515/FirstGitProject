@@ -15,10 +15,17 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
+
+import com.took.firstgit.event.ConstactEventMessage;
 import com.took.firstgit.ui.fragment.ContactsFragment;
 import com.took.firstgit.ui.fragment.FoundFragment;
 import com.took.firstgit.ui.fragment.MeFragment;
 import com.took.firstgit.utils.BottomNavigationViewHelper;
+import com.took.firstgit.utils.LogUtil;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager _viewPager;
     private MenuItem  _menuItem;
     private boolean   _isScrollViewPager = true;
+    public EventBus eventBus;
+    private ArrayList<Fragment> fragments;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -57,6 +66,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        eventBus = new EventBus();
+
+        fragments = new ArrayList<>();
+        // 装填
+        contactsFragment = ContactsFragment.newInstance(getResources().getString(R.string.title_contacts));
+        //contactsFragment = new ContactsFragment();
+        fragments.add(contactsFragment);
+        fragments.add(FoundFragment.newInstance(getResources().getString(R.string.title_found)));
+        fragments.add(MeFragment.newInstance(getResources().getString(R.string.title_me)));
+        fragments.add(FoundFragment.newInstance(getResources().getString(R.string.title_more)));
+
+        //eventBus.register(contactsFragment);//注册订阅者 MyFragment
 
         initView();
     }
@@ -64,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
     public void initView(){
         _viewPager   = findViewById(R.id.main_view_pager);
         _navigation  = findViewById(R.id.navigation);
-
+        _viewPager.setOffscreenPageLimit(0);
         initPointView();
         initViewPager();
     }
@@ -93,14 +114,8 @@ public class MainActivity extends AppCompatActivity {
         //count.setVisibility(View.GONE);
     }
 
-
+    private ContactsFragment contactsFragment = null;
     public void initViewPager(){
-        ArrayList<Fragment> fragments = new ArrayList<>();
-        // 装填
-        fragments.add(ContactsFragment.newInstance(getResources().getString(R.string.title_contacts)));
-        fragments.add(FoundFragment.newInstance(getResources().getString(R.string.title_found)));
-        fragments.add(MeFragment.newInstance(getResources().getString(R.string.title_me)));
-        fragments.add(FoundFragment.newInstance(getResources().getString(R.string.title_more)));
 
         MyPagerAdapter myPagerAdapter = new MyPagerAdapter(getSupportFragmentManager());
         myPagerAdapter.setFragments(fragments);
@@ -163,4 +178,12 @@ public class MainActivity extends AppCompatActivity {
             return (mFragmentList != null && mFragmentList.size() >0 ? mFragmentList.size() : 0);
         }
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //if(contactsFragment != null)  eventBus.unregister(contactsFragment);
+    }
+
+
 }

@@ -5,4 +5,44 @@
         <attr name="WRONG_COLOR" format="color"/>
         <attr name="CORRECT_COLOR" format="color"/>
     </declare-styleable>
+
+
+    <declare-styleable name="RoundedImageView">
+        <attr name="corner_radius" format="dimension" />
+        <attr name="top_left_corner_radius" format="dimension" />
+        <attr name="top_right_corner_radius" format="dimension" />
+        <attr name="bottom_left_corner_radius" format="dimension" />
+        <attr name="bottom_right_corner_radius" format="dimension" />
+        <attr name="border_width" format="dimension" />
+        <attr name="border_color" format="color" />
+        <attr name="round_background" format="boolean" />
+        <attr name="android:scaleType" />
+    </declare-styleable>
+
+
+
+    <!--IndicatorView相关-->
+    <!--普通指示器图片-->
+    <attr name="normalDrawable" format="reference"/>
+    <!--选中指示器图片-->
+    <attr name="selectDrawable" format="reference"/>
+    <!--指示器间隔-->
+    <attr name="indicatorInterval" format="dimension"/>
+    <!--普通指示器颜色-->
+    <attr name="normalColor" format="color"/>
+    <!--选中指示器颜色-->
+    <attr name="selectColor" format="color"/>
+    <!--圆点弧度-->
+    <attr name="indicatorRadius" format="integer"/>
+    <!--是否是循环-->
+    <attr name="isCirculate" format="boolean"/>
+    <declare-styleable name="IndicatorView">
+        <attr name="normalDrawable"/>
+        <attr name="selectDrawable"/>
+        <attr name="indicatorInterval"/>
+        <attr name="normalColor"/>
+        <attr name="selectColor"/>
+        <attr name="indicatorRadius"/>
+        <attr name="isCirculate"/>
+    </declare-styleable>
 </resources>

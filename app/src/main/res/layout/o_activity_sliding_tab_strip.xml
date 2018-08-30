@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_grey"
+    >
+
+    <com.took.firstgit.view.NoTouchViewPager
+        android:id="@+id/o_bottom_view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/colorAccent"
+        >
+    </View>
+    <com.lhh.apst.library.AdvancedPagerSlidingTabStrip
+        android:id="@+id/o_bottom_tabs"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        style="@style/pager_tab_icon_style"
+        android:layout_alignParentBottom="true"
+        android:fillViewport="false"
+        />
+</RelativeLayout>

@@ -2,6 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.took.firstgit">
 
+    <!-- if you want to load images from the internet -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- if you want to load images from a file OR from the internet -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -64,6 +72,18 @@
         <activity
             android:name="com.lzy.imagepicker.ui.ImagePreviewDelActivity"
             android:theme="@style/ImagePickerThemeFullScreen"/>
+
+        <activity android:name=".ui.main.MainActivity" />
+
+        <activity android:name=".ui.guide.GuideActivity" />
+
+        <activity android:name=".ui.activity.BottomSlidingTabStripActivity" />
+
+        <activity android:name=".ui.auto.AutoViewPagerCardActivity" />
+
+        <activity android:name=".ui.gallery.GalleryActivity" />
+
+        <activity android:name=".ui.Menu.FloatingActionMenuActivity" />
     </application>
 
 </manifest>

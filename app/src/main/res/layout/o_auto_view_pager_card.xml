@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:idv="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/img_viewpager"
+            android:layout_width="match_parent"
+            android:background="@color/purple"
+            android:layout_height="200dp"
+            android:visibility="visible"
+            android:clipToPadding="false"
+            android:paddingBottom="8dp"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:paddingTop="8dp"
+            />
+
+        <!--指示器-->
+        <com.took.firstgit.ui.auto.IndicatorView
+            android:id="@+id/idv_banner"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_alignParentBottom="true"
+            android:gravity="center_horizontal"
+            android:background="@color/red"
+            idv:indicatorInterval="10dp"
+            idv:isCirculate="true"
+            idv:normalDrawable="@mipmap/banner_dot_normal"
+            idv:selectDrawable="@mipmap/banner_dot_select">
+        </com.took.firstgit.ui.auto.IndicatorView>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="50dp"
+        >
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/img_viewpager2"
+            android:layout_width="match_parent"
+            android:background="@color/bg_grey"
+            android:layout_height="200dp"
+            android:visibility="visible"
+            android:clipToPadding="false"
+            android:paddingBottom="12dp"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:paddingTop="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            />
+    </RelativeLayout>
+</LinearLayout>

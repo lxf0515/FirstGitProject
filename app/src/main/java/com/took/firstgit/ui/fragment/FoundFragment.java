@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import com.took.firstgit.R;
 import com.took.firstgit.base.BaseFragment;
+import com.took.firstgit.utils.LogUtil;
 
 public class FoundFragment extends BaseFragment {
     private static final String TAG = FoundFragment.class.getSimpleName();
@@ -29,7 +30,7 @@ public class FoundFragment extends BaseFragment {
         super.initData();
         if(getArguments() != null) {
             _titleName = getArguments().getString("titleName","Default");
-            Log.d(TAG,_titleName);
+           // Log.d(TAG,_titleName);
         }
     }
 
@@ -38,5 +39,17 @@ public class FoundFragment extends BaseFragment {
         super.initView();
         _nameView = findViewById(R.id.found_name);
         _nameView.setText(_titleName);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        LogUtil.d("Found onResume()" + _titleName);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        LogUtil.d("Found onPause()" + _titleName);
     }
 }

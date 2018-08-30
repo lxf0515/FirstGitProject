@@ -40,7 +40,8 @@ dependencies {
     implementation 'com.jungly:gridPasswordView:0.3'
     //图片裁剪
     //implementation 'com.lzy.widget:imagepicker:0.6.1'
-    implementation 'com.lzy.widget:imagepicker:0.6.1'
+    implementation project(':mylibrary')
+
     implementation 'com.github.bumptech.glide:glide:4.3.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
     //二维码
@@ -48,4 +49,23 @@ dependencies {
     /** 第三方库动态申请权限  */
     implementation 'com.yanzhenjie:permission:1.0.5'
     implementation files('libs/CrashHelper.jar')
+
+    /**图片压缩**/
+    implementation 'id.zelory:compressor:2.1.0'
+
+    /** Smart 刷新库 **/
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-14'
+    /** Banner **/
+    implementation 'com.youth.banner:banner:1.4.10'
+
+    //导航控件
+    implementation 'homhomlin.lib:apsts:1.8.0'
+
+    implementation 'com.android.support:cardview-v7:27.+'
+
+    //浮动菜单按钮动画
+    implementation 'com.github.clans:fab:1.6.4'
+
+    /** EventBus库  **/
+    implementation 'org.greenrobot:eventbus:3.1.1'
 }

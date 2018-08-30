@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -18,10 +19,15 @@ import com.lzy.imagepicker.bean.ImageItem;
 import com.lzy.imagepicker.ui.ImageGridActivity;
 import com.lzy.imagepicker.view.CropImageView;
 import com.took.firstgit.R;
+import com.took.firstgit.utils.FileSizeUtil;
 import com.took.firstgit.utils.scan.ScannImageUtils;
 import com.yanzhenjie.permission.AndPermission;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+
+import id.zelory.compressor.Compressor;
 
 import static com.lzy.imagepicker.ui.ImageGridActivity.EXTRAS_TAKE_PICKERS;
 
@@ -60,11 +66,12 @@ public class PictureSelectActivity extends AppCompatActivity{
 
     private void initImagePicker(){
         ImagePicker imagePicker = ImagePicker.getInstance();
+        imagePicker.setMultiMode(false);//多选
         imagePicker.setImageLoader(new GlideImageLoader());   //设置图片加载器
         imagePicker.setShowCamera(true);  //显示拍照按钮
         imagePicker.setCrop(true);        //允许裁剪（单选才有效）
         imagePicker.setSaveRectangle(true); //是否按矩形区域保存
-        imagePicker.setSelectLimit(1);    //选中数量限制
+        imagePicker.setSelectLimit(maxImgCount);    //选中数量限制
         imagePicker.setStyle(CropImageView.Style.RECTANGLE);  //裁剪框的形状
         imagePicker.setFocusWidth(800);   //裁剪框的宽度。单位像素（圆形自动取宽高最小值）
         imagePicker.setFocusHeight(800);  //裁剪框的高度。单位像素（圆形自动取宽高最小值）
@@ -76,20 +83,23 @@ public class PictureSelectActivity extends AppCompatActivity{
         pzBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(selImageList != null ) selImageList.clear();
                 ImagePicker.getInstance().setSelectLimit(maxImgCount);
+
                 //ImagePicker.getInstance().setSelectLimit(maxImgCount - selImageList.size());
                 Intent intent = new Intent(context, ImageGridActivity.class);
-                intent.putExtra(EXTRAS_TAKE_PICKERS, false); // 是否是直接打开相机
+                intent.putExtra(EXTRAS_TAKE_PICKERS, true); // 是否是直接打开相机
                 startActivityForResult(intent, REQUEST_CODE_SELECT);
             }
         });
         xcBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(selImageList != null ) selImageList.clear();
+
                 //打开选择,本次允许选择的数量
                 ImagePicker.getInstance().setSelectLimit(maxImgCount);
                 //ImagePicker.getInstance().setSelectLimit(maxImgCount - selImageList.size());
+
                 Intent intent1 = new Intent(context, ImageGridActivity.class);
                 /* 如果需要进入选择的时候显示已经选中的图片，
                  * 详情请查看ImagePickerActivity
@@ -103,6 +113,7 @@ public class PictureSelectActivity extends AppCompatActivity{
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if(selImageList != null) selImageList.clear();
         if (resultCode == ImagePicker.RESULT_CODE_ITEMS) {
             //添加图片返回
             if (data != null && requestCode == REQUEST_CODE_SELECT) {
@@ -113,6 +124,9 @@ public class PictureSelectActivity extends AppCompatActivity{
                         System.out.println("selImageList path is " + selImageList.get(0).path);
                         Glide.with(this).clear(showImage);
                         ImagePicker.getInstance().getImageLoader().displayImage((Activity) context, selImageList.get(0).path, showImage, 0, 0);
+
+                        //压缩
+                        funCompressor(selImageList.get(0).path);
 
                         Result result = ScannImageUtils.decodeBarcodeRGB(selImageList.get(0).path,true);
                         if(result != null){
@@ -140,4 +154,32 @@ public class PictureSelectActivity extends AppCompatActivity{
 
 
 
+    private void funCompressor(String path){
+        File actualImageFile = new File(path);
+        try {
+            File compressedImageFile = new Compressor(this).compressToFile(actualImageFile);
+
+            System.out.println("compressedImageFile is " + compressedImageFile.getAbsolutePath());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            File compressedImage = new Compressor(this)
+                    .setMaxWidth(480)
+                    .setMaxHeight(800)
+                    .setQuality(80)
+                    .setCompressFormat(Bitmap.CompressFormat.WEBP)
+                    .setDestinationDirectoryPath(Environment.getExternalStoragePublicDirectory(
+                            Environment.DIRECTORY_PICTURES).getAbsolutePath())
+                    .compressToFile(actualImageFile);
+
+            System.out.println("compressedImage is " + compressedImage.getAbsolutePath());
+
+            double fileSize = FileSizeUtil.getFileOrFilesSize(compressedImage.getAbsolutePath(),FileSizeUtil.SIZETYPE_KB);
+            System.out.println("compressedImage fileSize is " + fileSize);
+        }catch (Exception e){
+
+        }
+    }
 }

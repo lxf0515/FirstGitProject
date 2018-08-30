@@ -21,4 +21,28 @@
         <item name="android:windowBackground">@android:color/transparent</item>
         <!-- 还可以加入一些弹出和退出的动画 (lan)-->
     </style>
+
+    <style name="view_anim_guide">
+        <item name="android:windowEnterAnimation">@anim/fade_in</item>
+        <item name="android:windowExitAnimation">@anim/fade_out</item>
+    </style>
+
+    <style name="CustomTabPageIndicator.Text" parent="android:TextAppearance.Medium">
+        <item name="android:typeface">monospace</item>
+    </style>
+
+    <style name="pager_tab_icon_style">
+        <item name="android:background">@drawable/tab_bg_normal</item>
+        <item name="apTabBackground">@drawable/tab_bg_normal</item>
+        <item name="android:textSize">11sp</item>
+        <!--<item name="android:textColor">@drawable/tab_color_select</item>-->
+        <item name="android:textAppearance">@style/CustomTabPageIndicator.Text</item>
+        <item name="apTabIndicatorColor">@android:color/transparent</item>
+        <item name="apTabUnderlineColor">#1A000000</item>
+        <item name="apTabDividerColor">#00000000</item>
+        <item name="apTabShouldExpand">false</item>
+        <item name="apTabPaddingLeftRight">8dp</item>
+        <item name="apTabPaddingTopBottom">2dp</item>
+        <item name="apTabTextSelectColor">@color/colorAccent</item>
+    </style>
 </resources>

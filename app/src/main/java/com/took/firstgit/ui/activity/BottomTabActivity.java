@@ -30,6 +30,8 @@ public class BottomTabActivity extends AppCompatActivity implements View.OnClick
     }
 
     public void initView(){
+        contactsTv   = findViewById(R.id.bottom_tab_custom_friend_tv);
+        meTv         = findViewById(R.id.bottom_tab_custom_me_tv);
         contactsView = findViewById(R.id.bottom_tab_custom_friend_img);
         foundView    = findViewById(R.id.bottom_tab_custom_found_img);
         meView       = findViewById(R.id.bottom_tab_custom_me_img);

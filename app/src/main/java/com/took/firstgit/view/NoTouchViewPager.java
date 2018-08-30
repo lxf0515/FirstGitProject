@@ -10,21 +10,36 @@ import android.view.MotionEvent;
  */
 public class NoTouchViewPager extends ViewPager{
 
-    public NoTouchViewPager(Context context) {
-        super(context);
-    }
-
+    private boolean isCanScroll = false;
+    private boolean mNoFocus = false; //if true, keep View don't move
     public NoTouchViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
+    public NoTouchViewPager(Context context){
+        this(context,null);
+    }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        return false;
+    /**
+     * 设置其是否能滑动换页
+     * @param isCanScroll false 不能换页， true 可以滑动换页
+     */
+    public void setScanScroll(boolean isCanScroll) {
+        this.isCanScroll = isCanScroll;
+    }
+
+    public void setNoFocus(boolean b){
+        mNoFocus = b;
     }
 
     @Override
-    public boolean onInterceptTouchEvent(MotionEvent event) {
-        return false;
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        if (mNoFocus) return false;
+        return isCanScroll && super.onInterceptTouchEvent(ev);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent ev) {
+        return isCanScroll && super.onTouchEvent(ev);
+
     }
 }
