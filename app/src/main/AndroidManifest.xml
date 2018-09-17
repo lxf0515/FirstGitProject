@@ -84,6 +84,8 @@
         <activity android:name=".ui.gallery.GalleryActivity" />
 
         <activity android:name=".ui.Menu.FloatingActionMenuActivity" />
+
+        <activity android:name=".ui.notice.ONoticeActivity" />
     </application>
 
 </manifest>
